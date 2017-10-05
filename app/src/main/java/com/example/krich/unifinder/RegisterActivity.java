@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -32,15 +37,38 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     protected void reg(View v){
-        //Toast.makeText(this, mEmail.getText().toString() , Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, mPass.getText().toString() , Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, mPassCon.getText().toString() , Toast.LENGTH_SHORT).show();
-
         String email = mEmail.getText().toString();
         String password = mPass.getText().toString();
+        String passCon = mPassCon.getText().toString();
+        String hashedPass = "";
 
+        if(!password.equals(passCon)){
+            Toast.makeText(this, "Passwords should match!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        try {
+            MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
+            sha1.update(password.getBytes(StandardCharsets.US_ASCII));
+
+            byte[] Hashed = sha1.digest(password.getBytes(StandardCharsets.UTF_8));
+
+            StringBuilder buff = new StringBuilder();
+            for (byte b : Hashed) {
+                String conversion = Integer.toString(b & 0xFF,16);
+                while (conversion.length() < 2) {
+                    conversion = "0" + conversion;
+                }
+                buff.append(conversion);
+            }
+            hashedPass = buff.toString();
+        }
+        catch (NoSuchAlgorithmException e) {
+            Toast.makeText(RegisterActivity.this, "Exception",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        mAuth.createUserWithEmailAndPassword(email, hashedPass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -48,8 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(RegisterActivity.this, "Reg Success.",
-                                    Toast.LENGTH_SHORT).show();
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
