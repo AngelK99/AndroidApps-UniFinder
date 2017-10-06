@@ -17,12 +17,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void loginMethod(View v) {
-        Intent loginPage = new Intent(this ,LoginActivity.class);
+        Intent loginPage = new Intent(MainActivity.this ,LoginActivity.class);
         this.startActivity(loginPage);
     }
 
     protected void regMethod(View v) {
-        Intent regPage = new Intent(this , RegisterActivity.class);
+        Intent regPage = new Intent(MainActivity.this , RegisterActivity.class);
         this.startActivity(regPage);
     }
 }

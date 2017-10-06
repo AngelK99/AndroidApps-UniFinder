@@ -12,12 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\krich\.android\build-cache\2d718998bddaaf0ea7a020054134b77724767997\output\jars\classes.jar"
+        jar="C:\Users\krich\.android\build-cache\bc7940c45f0c3a5c07fcc903b9e1bc45b3b4f2af\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="ed3fc7c06f23dead13772eca1140a58f2960af0f">
-        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_43218426121e7640127f4db2452d5866251d55ea\classes.dex" />
+        sha1="684feeeb5dfd681b5babbf3c7ea436e2a1b8cdbc">
+        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_02e8a4c29bbb174c9bf7cec205e6f2be00128183\classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -57,15 +57,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\krich\.android\build-cache\12e176b4a26434165b709c99f97c3cd78853a02a\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="4c0c3a9709adc7608860b0a9f65f661cd3ff4d07">
-        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_04212fc0b58376ac8625e6353d591b89927be6e3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\krich\.android\build-cache\d9e5f74f1337196b584686fbfefed2a291ec84a2\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -84,12 +75,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\krich\.android\build-cache\74701384018d31474b21f245ba9ebd3a53c4b1d5\output\jars\classes.jar"
+        jar="C:\Users\krich\.android\build-cache\c184bf012106742b12ce04095fb2fbbd29205825\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="eb366c8b72908e2afa66c66b0a3f1318265a473e">
-        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a6c6a6a722273a7905fcc9b3f0535097d92ac417\classes.dex" />
+        sha1="4419abd361932fe84800422dd6f86adb912394e6">
+        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_34fa89b8bd7d1737b10fc82ab255067b92ec357d\classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -99,15 +90,6 @@
         revision="26.0.2"
         sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
         <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\pre-dexed\debug\classes_62e836d60b336e467f6318c9c5b61f7cd1416197.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\krich\.android\build-cache\a21d6a2db995644019a846eaad525280a140cff7\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="bd47a98a8f3d53220afca6f869f37c56c273c8d9">
-        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_43aae6f6c018cd4f39802c39e2630b15b4d93afc\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -232,17 +214,8 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="7c06ae6aad0ca36464ba723fef56aab244e95746">
+        sha1="8c5b2236b260676d9d8ea565bd0aa1340141e797">
         <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_6f2d555e81b3a2bb40a8d7218a99fdb204977ac9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\krich\.android\build-cache\4f0ad6fb12f787d47bbcc7f13e26c6a04bd2291b\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="81731aca8a4bb4974bd5430f840cfea96c7017f0">
-        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_40b7fa72b555c5e6d603c714d350ce90cf508868\classes.dex" />
     </item>
 
 </items>
