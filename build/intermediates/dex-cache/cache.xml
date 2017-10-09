@@ -191,6 +191,24 @@
         <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\pre-dexed\debug\classes_76b0956528162301dde97529fb2235194d9f269e.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="C:\Users\krich\.android\build-cache\59a438421b014ff7607e39adddf1559b616a5338\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e5119bcdd79dd240077e3e3ea28186e2c3fe9ff8">
+        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8b566dfb6954315b8c8347ee76c177dc27cfc5da\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\krich\.android\build-cache\8cda90772614be98b82b71300ca5f4c930115b58\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="13577c8eba4cab6e289a4c753ef7b0e376c918f1">
+        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4e260622b9cbb9bce7ff16ad697ee144b326a6a2\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="C:\Users\krich\.android\build-cache\6a13ae600b7a124082672fa3c201a684786357c1\output\jars\classes.jar"
         jumboMode="false"
@@ -214,7 +232,7 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="8c5b2236b260676d9d8ea565bd0aa1340141e797">
+        sha1="01f5def6dc786a800a7368bf976c523cf15febcf">
         <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_6f2d555e81b3a2bb40a8d7218a99fdb204977ac9\classes.dex" />
     </item>
 

@@ -32,9 +32,9 @@ public class FirstLoginActivity extends AppCompatActivity {
         EditText mName = (EditText) findViewById(R.id.mNameInput);
         EditText lName = (EditText) findViewById(R.id.lNameInput);
 
-        mDatabase.child("users").child(mUserId).child("fName").setValue(fName.getText().toString());
-        mDatabase.child("users").child(mUserId).child("mName").setValue(mName.getText().toString());
-        mDatabase.child("users").child(mUserId).child("lName").setValue(lName.getText().toString());
+        mDatabase.child("users").child(mUserId).child("firstName").setValue(fName.getText().toString());
+        mDatabase.child("users").child(mUserId).child("midName").setValue(mName.getText().toString());
+        mDatabase.child("users").child(mUserId).child("lastName").setValue(lName.getText().toString());
         mDatabase.child("users").child(mUserId).child("hasLogged").setValue("1");
 
         Intent pp = new Intent(FirstLoginActivity.this, ProfilePageActivity.class);
