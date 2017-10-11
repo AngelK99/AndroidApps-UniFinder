@@ -6,44 +6,74 @@
     android:layout_height="match_parent"
     tools:context="com.example.krich.unifinder.FirstLoginActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Let's set up your account!"/>
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/fNameInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter your First Name*"/>
+            <EditText
+                android:id="@+id/fNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your First Name*"/>
 
-        <EditText
-            android:id="@+id/mNameInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter your Middle Name"/>
+            <EditText
+                android:id="@+id/mNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Middle Name"/>
 
-        <EditText
-            android:id="@+id/lNameInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter your Last Name*"/>
+            <EditText
+                android:id="@+id/lNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Last Name*"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:textAlignment="center"
-            android:onClick="setProfile"/>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Pick your birthday*:"/>
+
+                <DatePicker
+                    android:id="@+id/calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:datePickerMode="spinner"
+                    android:calendarViewShown="false"></DatePicker>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/telInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter your telephone number"/>
+            <CheckBox
+                android:id="@+id/telHidden"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hidden in profile"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:textAlignment="center"
+                android:onClick="setProfile"/>
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

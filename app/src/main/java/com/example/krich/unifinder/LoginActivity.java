@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            final FirebaseUser user = mAuth.getCurrentUser();
                             final String[] hasLogged = new String[1];
 
                             DatabaseReference ref = mDatabase.getReference("users/" + user.getUid());
@@ -66,9 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                             ref.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    hasLogged[0] = (String)dataSnapshot.child("hasLogged").getValue();
+                                    //hasLogged[0] = (String)dataSnapshot.child("hasLogged").getValue();
+                                    User u = dataSnapshot.getValue(User.class);
 
-                                    if(hasLogged[0].equals("1")) {
+                                    if(u.getHasLogged()) {
                                         Intent pp = new Intent(LoginActivity.this, HomePageActivity.class);
                                         LoginActivity.this.startActivity(pp);
 
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                         finish();
                                     }
                                     else{
-                                        Intent ps = new Intent(LoginActivity.this, HomePageActivity.class);
+                                        Intent ps = new Intent(LoginActivity.this, FirstLoginActivity.class);
                                         LoginActivity.this.startActivity(ps);
 
                                         MainActivity.ma.finish();

@@ -9,14 +9,31 @@ class User {
     private String mMidName;
     private String mLastName;
     private String mEmail;
+    private Boolean mHasLogged;
+    private String mTelNum;
+    private Boolean mTelHidden;
 
     public User(){
 
     }
 
-    public String getFirstName() {
-        return mFirstName;
+    public User(String FirstName, String MidName, String LastName,
+                String TelNum,
+                Boolean IsHidden){
+        mFirstName = FirstName;
+        mMidName = MidName;
+        mLastName = LastName;
+        mHasLogged = true;
+        mTelNum = TelNum;
+        mTelHidden = IsHidden;
     }
+
+    public User(String Email){
+        mEmail = Email;
+        mHasLogged = false;
+    }
+
+    public String getFirstName() { return mFirstName; }
 
     public void setFirstName(String mFirstName) {
         this.mFirstName = mFirstName;
@@ -48,6 +65,18 @@ class User {
 
     @Override
     public String toString(){
-        return this.mFirstName + " " + this.mMidName + " " + this.mLastName + " " + this.mEmail;
+        return this.mFirstName + " " + this.mMidName + " " + this.mLastName + " " + this.mEmail + " " + this.mHasLogged;
     }
+
+    public Boolean getHasLogged() { return mHasLogged; }
+
+    public void setHasLogged(Boolean mHasLogged) { this.mHasLogged = mHasLogged; }
+
+    public String getTelNum() { return mTelNum; }
+
+    public void setTelNum(String mTelNum) { this.mTelNum = mTelNum; }
+
+    public Boolean getmelHidden() { return mTelHidden; }
+
+    public void setTelHidden(Boolean mTelHidden) { this.mTelHidden = mTelHidden; }
 }

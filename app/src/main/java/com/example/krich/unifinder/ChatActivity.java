@@ -106,7 +106,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 msgView.setText(msg.getText());
                 chat.addView(msgView);
-                
+
                 mScrollView.post(mScrollDown);
             }
 

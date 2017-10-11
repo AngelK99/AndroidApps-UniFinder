@@ -62,9 +62,9 @@ public class RegisterActivity extends AppCompatActivity {
                                                             .child("users")
                                                             .child(user.getUid());
                             String eMail = user.getEmail();
-
-                            ref.child("hasLogged").setValue("0");
-                            ref.child("eMail").setValue(eMail);
+                            User userData = new User(eMail)
+                                    ;
+                            ref.setValue(userData);
 
                             Intent loginPage = new Intent(RegisterActivity.this, LoginActivity.class);
                             Bundle b = new Bundle();
