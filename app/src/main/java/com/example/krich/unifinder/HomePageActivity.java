@@ -1,5 +1,6 @@
 package com.example.krich.unifinder;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,15 +51,14 @@ public class HomePageActivity extends AppCompatActivity {
 
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
                     final User us = childDataSnapshot.getValue(User.class);
-
                     final String uid = (String)childDataSnapshot.getKey();
+
                     if(uid.equals(currUid)){
-                        Log.d("UserInfo: ", "YES");
                         continue;
                     }
 
                     TextView user = new TextView(HomePageActivity.this);
-                    Button chat = new Button(HomePageActivity.this);
+                    final Button chat = new Button(HomePageActivity.this);
                     LinearLayout userField = new LinearLayout(HomePageActivity.this);
 
                     user.setLayoutParams(new LinearLayout.LayoutParams(
@@ -78,12 +78,20 @@ public class HomePageActivity extends AppCompatActivity {
                     chat.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            Bundle b = new Bundle();
+                            String[] params = { uid ,us.getFirstName(), us.getLastName()};
+                            Intent chatPage = new Intent(HomePageActivity.this, ChatActivity.class);
+
+                            b.putStringArray("userInfo", params);
+                            chatPage.putExtras(b);
+
+                            HomePageActivity.this.startActivity(chatPage);
                             Log.d("UserInfo: ", us.getFirstName() + " " + us.getLastName());
                             Log.d("UserInfo: ", uid);
                         }
                     });
 
-                    user.setText((String)childDataSnapshot.child("eMail").getValue());
+                    user.setText(us.getEmail());
 
                     userField.addView(user);
                     userField.addView(chat);

@@ -25,7 +25,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ProfilePageActivity" />
         <activity android:name=".FirstLoginActivity" />
-        <activity android:name=".HomePageActivity"></activity>
+        <activity android:name=".HomePageActivity" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>
