@@ -104,7 +104,6 @@ public class HomePageActivity extends AppCompatActivity {
                     final Button chat = new Button(HomePageActivity.this);
                     LinearLayout userField = new LinearLayout(HomePageActivity.this);
                     final ImageView userProfilePic = new ImageView(HomePageActivity.this);
-                    Button viewProfile = new Button(HomePageActivity.this);
 
                     user.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -115,18 +114,13 @@ public class HomePageActivity extends AppCompatActivity {
                             LinearLayout.LayoutParams.WRAP_CONTENT));
 
                     userField.setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.HORIZONTAL));
 
                     userProfilePic.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.MATCH_PARENT
-                    ));
-
-                    viewProfile.setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT
                     ));
 
                     Glide.with(HomePageActivity.this)
@@ -151,8 +145,7 @@ public class HomePageActivity extends AppCompatActivity {
                         }
                     });
 
-                    viewProfile.setText("View Profile");
-                    viewProfile.setOnClickListener(new View.OnClickListener() {
+                    userField.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Bundle id = new Bundle();
@@ -171,7 +164,6 @@ public class HomePageActivity extends AppCompatActivity {
 
                     userField.addView(userProfilePic);
                     userField.addView(user);
-                    userField.addView(viewProfile);
                     userField.addView(chat);
 
                     mUserList.addView(userField);

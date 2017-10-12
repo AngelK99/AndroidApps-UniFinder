@@ -22,12 +22,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ChatActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ChatActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/FirstLoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/FirstLoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/HomePageActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/HomePageActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ProfilePageActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ProfilePageActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_first_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_first_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile_page.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile_page.xml" />
     </list>
     <ignored path="UniFinder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,14 +59,37 @@
       <file leaf-file-name="HomePageActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/HomePageActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="131" column="20" selection-start-line="131" selection-start-column="20" selection-end-line="134" selection-end-column="50" />
+            <state relative-caret-position="328">
+              <caret line="165" column="44" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
               <folding>
-                <element signature="e#5448#6198#0" expanded="true" />
-                <element signature="e#6197#6198#0" expanded="true" />
-                <element signature="e#6310#6966#0" expanded="true" />
-                <element signature="e#6965#6966#0" expanded="true" />
+                <element signature="e#5133#5883#0" expanded="true" />
+                <element signature="e#5882#5883#0" expanded="true" />
+                <element signature="e#5936#6592#0" expanded="true" />
+                <element signature="e#6591#6592#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_user_search.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_search.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserSearchActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/UserSearchActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,7 +118,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_profile_page.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="activity_profile_page.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile_page.xml">
           <provider editor-type-id="android-designer2">
             <state />
@@ -1832,7 +1852,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="C:\Users\krich\Desktop\AndroidApps-UniFinder" value="4521930067596" />
+        <entry key="C:\Users\krich\Desktop\AndroidApps-UniFinder" value="4521932382281" />
         <entry key="C:\Users\krich\Desktop\UniFinder" value="4520590904830" />
       </map>
     </option>
@@ -2212,11 +2232,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home_page.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ChatActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/HomePageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_first_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/FirstLoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ProfilePageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_profile_page.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/HomePageActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/UserSearchActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_user_search.xml" />
       </list>
     </option>
   </component>
@@ -2434,6 +2456,7 @@
   <component name="RecentsManager">
     <key name="android.template.packageName">
       <recent name="com.example.krich.unifinder" />
+      <recent name="layout" />
     </key>
     <key name="android.template.parentActivityClass">
       <recent name="" />
@@ -2777,7 +2800,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
@@ -2837,25 +2860,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
@@ -3200,27 +3204,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/HomePageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="131" column="20" selection-start-line="131" selection-start-column="20" selection-end-line="134" selection-end-column="50" />
-          <folding>
-            <element signature="e#5448#6198#0" expanded="true" />
-            <element signature="e#6197#6198#0" expanded="true" />
-            <element signature="e#6310#6966#0" expanded="true" />
-            <element signature="e#6965#6966#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ProfilePageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ChatActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="566">
@@ -3240,6 +3223,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/ProfilePageActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/HomePageActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="165" column="44" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
+          <folding>
+            <element signature="e#5133#5883#0" expanded="true" />
+            <element signature="e#5882#5883#0" expanded="true" />
+            <element signature="e#5936#6592#0" expanded="true" />
+            <element signature="e#6591#6592#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/krich/unifinder/UserSearchActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_search.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
           <folding />
         </state>
       </provider>
