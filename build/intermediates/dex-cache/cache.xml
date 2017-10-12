@@ -38,6 +38,15 @@
         <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\pre-dexed\debug\classes_b98a03c5acd4ae9fdaea1bf514583319dbcc4917.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="C:\Users\krich\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_a88b2af807303a7b02eb89de518dbe366432e130\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="C:\Users\krich\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
         jumboMode="false"
@@ -63,6 +72,15 @@
         revision="26.0.2"
         sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
         <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\pre-dexed\debug\classes_78f3d9ea2bb8af55542b410e42b9959c743df764.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\krich\.android\build-cache\75b0ce86713c38f4aa3713c271dfe58a795b85c9\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3c433e48557e476290f45fb6cb568d1a103c9978">
+        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2f54ff54ec9b93b3bb6278b73427039918569768\classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -216,6 +234,15 @@
         revision="26.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_f5cb7138179eb228586d1646fff56a2cd45b5873\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\krich\.android\build-cache\4e8a3b712903868c12d5e2e061871ddcd8793e54\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="51518e8e8f97c314a243d9def0ded91d385b6a1e">
+        <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0925ca076df337ba843ee8d4830ebc021bead816\classes.dex" />
     </item>
     <item
         is-multidex="false"

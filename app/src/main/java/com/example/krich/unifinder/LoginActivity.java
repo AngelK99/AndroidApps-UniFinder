@@ -2,6 +2,7 @@ package com.example.krich.unifinder;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -48,12 +49,17 @@ public class LoginActivity extends AppCompatActivity {
 
             mEmail.setText(params[0]);
             mPassword.setText(params[1]);
+        }else {
+            SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+
+            mEmail.setText(prefs.getString("email", ""));
+            mPassword.setText(prefs.getString("password",""));
         }
     }
 
     protected void login(View v){
-        String email = mEmail.getText().toString();
-        String password = mPassword.getText().toString();
+        final String email = mEmail.getText().toString();
+        final String password = mPassword.getText().toString();
 
         if(email.isEmpty()){
             Toast.makeText(LoginActivity.this, "Email is required.",
@@ -91,6 +97,12 @@ public class LoginActivity extends AppCompatActivity {
                                     if(u.getHasLogged()) {
                                         Intent pp = new Intent(LoginActivity.this, HomePageActivity.class);
                                         LoginActivity.this.startActivity(pp);
+
+                                        SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = prefs.edit();
+                                        editor.putString("email", email);
+                                        editor.putString("password", password);
+                                        editor.commit();
 
                                         MainActivity.ma.finish();
                                         finish();

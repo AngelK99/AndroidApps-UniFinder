@@ -122,7 +122,7 @@ public class FirstLoginActivity extends AppCompatActivity {
 
         if(uni.isEmpty()){
             Toast.makeText(this, "University is required!", Toast.LENGTH_LONG).show();
-            mLastNameInput.requestFocus();
+            mUniInput.requestFocus();
             return;
         }
 
@@ -132,7 +132,7 @@ public class FirstLoginActivity extends AppCompatActivity {
             Sex = "f";
         }
 
-        userData = new User(fName, mName, lName, phoneNum, isHidden, Sex);
+        userData = new User(fName, mName, lName, phoneNum, isHidden, Sex, uni);
 
         mDatabase.child("users").child(mUserId).setValue(userData);
 
@@ -153,6 +153,7 @@ public class FirstLoginActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         if (requestCode == PICK_IMAGE) {
+
             Uri img = data.getData();
             StorageReference profilePicRef = mStorageRef.child("profilePics").child(mUserId);
 

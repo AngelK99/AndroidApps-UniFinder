@@ -6,13 +6,38 @@
     android:layout_height="match_parent"
     tools:context="com.example.krich.unifinder.HomePageActivity">
 
-
     <LinearLayout
-        android:id="@+id/userList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find People"
+                android:onClick="searchPeople"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/userList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latest Users:"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
