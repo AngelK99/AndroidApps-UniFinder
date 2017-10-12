@@ -1,5 +1,6 @@
 package com.example.krich.unifinder;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.krich.unifinder.models.User;
+import com.example.krich.unifinder.utils.PassHasher;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -49,6 +52,11 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        final ProgressDialog singUpInProgress = new ProgressDialog(this);
+        singUpInProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        singUpInProgress.setTitle("Logging in..");
+        singUpInProgress.show();
+
         hashedPass = ph.Hash(password);
 
 
@@ -62,8 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                             .child("users")
                                                             .child(user.getUid());
                             String eMail = user.getEmail();
-                            User userData = new User(eMail)
-                                    ;
+                            User userData = new User(eMail);
                             ref.setValue(userData);
 
                             Intent loginPage = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -78,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(RegisterActivity.this, "Reg failed.",
                                     Toast.LENGTH_SHORT).show();
+                            singUpInProgress.cancel();
                         }
                     }
                 });

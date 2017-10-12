@@ -22,12 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ProfilePageActivity" />
         <activity android:name=".FirstLoginActivity" />
         <activity android:name=".HomePageActivity" />
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity" />
     </application>
 
 </manifest>

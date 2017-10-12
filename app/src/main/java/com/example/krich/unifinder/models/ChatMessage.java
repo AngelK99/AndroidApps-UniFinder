@@ -1,10 +1,10 @@
-package com.example.krich.unifinder;
+package com.example.krich.unifinder.models;
 
 /**
  * Created by krich on 10-Oct-17.
  */
 
-class ChatMessage {
+public class ChatMessage {
     private String mText;
     private String mSender;
 

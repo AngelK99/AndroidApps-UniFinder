@@ -1,14 +1,18 @@
 package com.example.krich.unifinder;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.krich.unifinder.models.User;
+import com.example.krich.unifinder.utils.PassHasher;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -50,6 +54,23 @@ public class LoginActivity extends AppCompatActivity {
     protected void login(View v){
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
+
+        if(email.isEmpty()){
+            Toast.makeText(LoginActivity.this, "Email is required.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(password.isEmpty()){
+            Toast.makeText(LoginActivity.this, "Password is required.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        final ProgressDialog loggingInProgress = new ProgressDialog(this);
+        loggingInProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        loggingInProgress.setTitle("Logging in..");
+        loggingInProgress.show();
+
         PassHasher ph = new PassHasher();
         String hashedPass = ph.Hash(password);
 
@@ -59,14 +80,12 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             final FirebaseUser user = mAuth.getCurrentUser();
-                            final String[] hasLogged = new String[1];
 
                             DatabaseReference ref = mDatabase.getReference("users/" + user.getUid());
 
                             ref.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    //hasLogged[0] = (String)dataSnapshot.child("hasLogged").getValue();
                                     User u = dataSnapshot.getValue(User.class);
 
                                     if(u.getHasLogged()) {
@@ -87,11 +106,15 @@ public class LoginActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onCancelled(DatabaseError error) {
+                                    loggingInProgress.cancel();
+                                    Toast.makeText(LoginActivity.this, "Database error, please try again later.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             });
 
                         } else {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            loggingInProgress.cancel();
+                            Toast.makeText(LoginActivity.this, "Authentication failed. Wrong username and/or password.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

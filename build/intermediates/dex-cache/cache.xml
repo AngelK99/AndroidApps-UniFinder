@@ -367,7 +367,7 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="6aa40bac78e046abe3dc40176266dc8eee1377cc">
+        sha1="473c9fcc472201d066060a7fac8cc80da478fa60">
         <dex dex="C:\Users\krich\Desktop\AndroidApps-UniFinder\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_6f2d555e81b3a2bb40a8d7218a99fdb204977ac9\classes.dex" />
     </item>
 

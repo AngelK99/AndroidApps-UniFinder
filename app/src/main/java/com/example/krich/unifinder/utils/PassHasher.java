@@ -1,4 +1,4 @@
-package com.example.krich.unifinder;
+package com.example.krich.unifinder.utils;
 
 import android.widget.Toast;
 
@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by krich on 07-Oct-17.
  */
 
-class PassHasher {
+public class PassHasher {
     public PassHasher(){
     }
 

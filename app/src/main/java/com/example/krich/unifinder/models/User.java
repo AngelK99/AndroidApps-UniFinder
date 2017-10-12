@@ -1,10 +1,10 @@
-package com.example.krich.unifinder;
+package com.example.krich.unifinder.models;
 
 /**
  * Created by krich on 07-Oct-17.
  */
 
-class User {
+public class User {
     private String mFirstName;
     private String mMidName;
     private String mLastName;
@@ -12,20 +12,21 @@ class User {
     private Boolean mHasLogged;
     private String mTelNum;
     private Boolean mTelHidden;
+    private String mSex;
 
     public User(){
 
     }
 
     public User(String FirstName, String MidName, String LastName,
-                String TelNum,
-                Boolean IsHidden){
+                String TelNum, Boolean IsHidden, String Sex){
         mFirstName = FirstName;
         mMidName = MidName;
         mLastName = LastName;
         mHasLogged = true;
         mTelNum = TelNum;
         mTelHidden = IsHidden;
+        mSex = Sex;
     }
 
     public User(String Email){
@@ -63,11 +64,6 @@ class User {
         this.mEmail = mEmail;
     }
 
-    @Override
-    public String toString(){
-        return this.mFirstName + " " + this.mMidName + " " + this.mLastName + " " + this.mEmail + " " + this.mHasLogged;
-    }
-
     public Boolean getHasLogged() { return mHasLogged; }
 
     public void setHasLogged(Boolean mHasLogged) { this.mHasLogged = mHasLogged; }
@@ -76,7 +72,11 @@ class User {
 
     public void setTelNum(String mTelNum) { this.mTelNum = mTelNum; }
 
-    public Boolean getmelHidden() { return mTelHidden; }
+    public Boolean getTelHidden() { return mTelHidden; }
 
     public void setTelHidden(Boolean mTelHidden) { this.mTelHidden = mTelHidden; }
+
+    public String getSex() { return mSex; }
+
+    public void setSex(String mSex) { this.mSex = mSex; }
 }

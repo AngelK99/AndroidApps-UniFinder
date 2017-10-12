@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -17,12 +18,13 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.krich.unifinder.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,16 +32,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.zip.CheckedInputStream;
 
 public class FirstLoginActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE = 1;
     private StorageReference mStorageRef;
-
 
 
     private DatabaseReference mDatabase;
@@ -53,7 +55,6 @@ public class FirstLoginActivity extends AppCompatActivity {
     private CheckBox mHiddenTelNum;
     private EditText mTelNumInput;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,19 +67,12 @@ public class FirstLoginActivity extends AppCompatActivity {
         mUserId = mAuth.getCurrentUser().getUid().toString();
 
 
-        mFirstNameInput = (EditText)findViewById(R.id.fNameInput);
+        mFirstNameInput = (EditText) findViewById(R.id.fNameInput);
         mMidNameInput = (EditText) findViewById(R.id.mNameInput);
         mLastNameInput = (EditText) findViewById(R.id.lNameInput);
-        mCalendar = (DatePicker)findViewById(R.id.calendar);
-        mTelNumInput = (EditText)findViewById(R.id.telInput);
-        mHiddenTelNum = (CheckBox)findViewById(R.id.telHidden);
-
-        /*
-        Geocoder geocoder;
-        List<Address> addresses;
-        geocoder = new Geocoder(this, Locale.getDefault());
-
-        addresses = geocoder.getFromLocation(latitude, longitude, 1);*/
+        mCalendar = (DatePicker) findViewById(R.id.calendar);
+        mTelNumInput = (EditText) findViewById(R.id.telInput);
+        mHiddenTelNum = (CheckBox) findViewById(R.id.telHidden);
     }
 
     protected void setProfile(View v){
@@ -86,10 +80,14 @@ public class FirstLoginActivity extends AppCompatActivity {
         String fName = mFirstNameInput.getText().toString();
         String mName = mMidNameInput.getText().toString();
         String lName = mLastNameInput.getText().toString();
+        String Sex;
+        RadioButton sexM = (RadioButton)findViewById(R.id.sexM);
 
         int day = mCalendar.getDayOfMonth();
         int month = mCalendar.getMonth();
         int year = mCalendar.getYear();
+        //String birthday = year + month + day;
+        //Log.d("DatePicker", birthday);
 
         String phoneNum = mTelNumInput.getText().toString();
         Boolean isHidden = mHiddenTelNum.isChecked();
@@ -106,7 +104,13 @@ public class FirstLoginActivity extends AppCompatActivity {
             return;
         }
 
-        userData = new User(fName, mName, lName, phoneNum, isHidden);
+        if(sexM.isChecked()){
+            Sex = "m";
+        } else{
+            Sex = "f";
+        }
+
+        userData = new User(fName, mName, lName, phoneNum, isHidden, Sex);
 
         mDatabase.child("users").child(mUserId).setValue(userData);
 
@@ -140,12 +144,16 @@ public class FirstLoginActivity extends AppCompatActivity {
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                    String downloadUrl = taskSnapshot.getDownloadUrl().getPath();
                     Toast.makeText(FirstLoginActivity.this, "Upload Success!", Toast.LENGTH_SHORT).show();
-                    Log.d("PicInfo ", downloadUrl);
                 }
             });
         }
+    }
+
+    public boolean checkLocationPermission()
+    {
+        String permission = "android.permission.ACCESS_FINE_LOCATION";
+        int res = this.checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
     }
 }

@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.krich.unifinder.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,15 +21,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class HomePageActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private LinearLayout mUserList;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my_profile, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_myProfile:
+                openUserProfile();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +108,7 @@ public class HomePageActivity extends AppCompatActivity {
                         }
                     });
 
-                    user.setText(us.getEmail());
+                    user.setText(us.getFirstName() + " " + us.getLastName());
 
                     userField.addView(user);
                     userField.addView(chat);
@@ -105,5 +122,16 @@ public class HomePageActivity extends AppCompatActivity {
                 Toast.makeText(HomePageActivity.this, "Fail", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void openUserProfile(){
+        String uid = mAuth.getCurrentUser().getUid();
+
+        Bundle id = new Bundle();
+        id.putString("uid", uid);
+        Intent profilePage = new Intent(HomePageActivity.this, ProfilePageActivity.class);
+        profilePage.putExtras(id);
+
+        this.startActivity(profilePage);
     }
 }
