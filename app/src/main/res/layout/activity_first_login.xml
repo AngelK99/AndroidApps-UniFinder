@@ -19,25 +19,25 @@
                 android:id="@+id/fNameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter your First Name*"/>
+                android:hint="Enter your First Name*" />
 
             <EditText
                 android:id="@+id/mNameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter your Middle Name"/>
+                android:hint="Enter your Middle Name" />
 
             <EditText
                 android:id="@+id/lNameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter your Last Name*"/>
+                android:hint="Enter your Last Name*" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choose profile pic"
-                android:onClick="profilePic"/>
+                android:onClick="profilePic"
+                android:text="Choose profile pic" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -48,52 +48,61 @@
                     android:id="@+id/sexM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:text="Male" />
 
                 <RadioButton
                     android:id="@+id/sexF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Female"/>
+                    android:text="Female" />
             </RadioGroup>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Pick your birthday*:"/>
+                    android:gravity="center_horizontal"
+                    android:text="Pick your birthday:" />
 
                 <DatePicker
                     android:id="@+id/calendar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:datePickerMode="spinner"
-                    android:calendarViewShown="false"></DatePicker>
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"></DatePicker>
             </LinearLayout>
 
             <EditText
                 android:id="@+id/telInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Enter your telephone number"/>
+                android:hint="Enter your telephone number" />
+
             <CheckBox
                 android:id="@+id/telHidden"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hidden in profile"/>
+                android:text="Hidden in profile" />
+
+            <AutoCompleteTextView
+                android:id="@+id/uniInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Your University*:"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="setProfile"
                 android:text="Submit"
-                android:textAlignment="center"
-                android:onClick="setProfile"/>
+                android:textAlignment="center" />
         </LinearLayout>
     </ScrollView>
 

@@ -13,13 +13,15 @@ public class User {
     private String mTelNum;
     private Boolean mTelHidden;
     private String mSex;
+    private String mUniversity;
 
     public User(){
 
     }
 
     public User(String FirstName, String MidName, String LastName,
-                String TelNum, Boolean IsHidden, String Sex){
+                String TelNum, Boolean IsHidden, String Sex,
+                String University){
         mFirstName = FirstName;
         mMidName = MidName;
         mLastName = LastName;
@@ -27,6 +29,7 @@ public class User {
         mTelNum = TelNum;
         mTelHidden = IsHidden;
         mSex = Sex;
+        mUniversity = University;
     }
 
     public User(String Email){
@@ -79,4 +82,8 @@ public class User {
     public String getSex() { return mSex; }
 
     public void setSex(String mSex) { this.mSex = mSex; }
+
+    public String getUniversity() { return mUniversity; }
+
+    public void setUniversity(String mUniversity) { this.mUniversity = mUniversity; }
 }

@@ -13,8 +13,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -26,27 +30,32 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class FirstLoginActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE = 1;
+
     private StorageReference mStorageRef;
-
-
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private String mUserId;
+    private DatabaseReference mUniRef;
 
     private EditText mFirstNameInput;
     private EditText mMidNameInput;
@@ -54,6 +63,9 @@ public class FirstLoginActivity extends AppCompatActivity {
     private DatePicker mCalendar;
     private CheckBox mHiddenTelNum;
     private EditText mTelNumInput;
+    private AutoCompleteTextView mUniInput;
+
+    private String mUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +77,7 @@ public class FirstLoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mUserId = mAuth.getCurrentUser().getUid().toString();
-
+        mUniRef = mDatabase.child("universities");
 
         mFirstNameInput = (EditText) findViewById(R.id.fNameInput);
         mMidNameInput = (EditText) findViewById(R.id.mNameInput);
@@ -73,6 +85,9 @@ public class FirstLoginActivity extends AppCompatActivity {
         mCalendar = (DatePicker) findViewById(R.id.calendar);
         mTelNumInput = (EditText) findViewById(R.id.telInput);
         mHiddenTelNum = (CheckBox) findViewById(R.id.telHidden);
+        mUniInput = (AutoCompleteTextView)findViewById(R.id.uniInput);
+
+        mUniInput.addTextChangedListener(getUniIputTextWatcher());
     }
 
     protected void setProfile(View v){
@@ -81,6 +96,7 @@ public class FirstLoginActivity extends AppCompatActivity {
         String mName = mMidNameInput.getText().toString();
         String lName = mLastNameInput.getText().toString();
         String Sex;
+        String uni = mUniInput.getText().toString();
         RadioButton sexM = (RadioButton)findViewById(R.id.sexM);
 
         int day = mCalendar.getDayOfMonth();
@@ -100,6 +116,12 @@ public class FirstLoginActivity extends AppCompatActivity {
 
         if(lName.isEmpty()){
             Toast.makeText(this, "Last Name is required!", Toast.LENGTH_LONG).show();
+            mLastNameInput.requestFocus();
+            return;
+        }
+
+        if(uni.isEmpty()){
+            Toast.makeText(this, "University is required!", Toast.LENGTH_LONG).show();
             mLastNameInput.requestFocus();
             return;
         }
@@ -155,5 +177,45 @@ public class FirstLoginActivity extends AppCompatActivity {
         String permission = "android.permission.ACCESS_FINE_LOCATION";
         int res = this.checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private TextWatcher getUniIputTextWatcher(){
+        return new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("QueryInfo: ", "works " + s);
+                mUniRef.orderByValue().startAt(s.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        List<String> values = new ArrayList<String>();
+
+                        for (DataSnapshot child:
+                                dataSnapshot.getChildren()) {
+                            values.add(child.getValue().toString());
+                        }
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(FirstLoginActivity.this,
+                                android.R.layout.simple_dropdown_item_1line,
+                                values);
+                        mUniInput.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
     }
 }
