@@ -39,8 +39,10 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
         String[] userInfo = this.getIntent().getExtras().getStringArray("userInfo");
         setTitle("Chat with " + userInfo[1] + " " + userInfo[2]);
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         mMsgText = (EditText) findViewById(R.id.msgInput);

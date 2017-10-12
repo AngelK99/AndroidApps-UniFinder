@@ -1,18 +1,10 @@
 package com.example.krich.unifinder;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,7 +12,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -34,19 +25,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 public class FirstLoginActivity extends AppCompatActivity {
 
@@ -60,7 +45,6 @@ public class FirstLoginActivity extends AppCompatActivity {
     private EditText mFirstNameInput;
     private EditText mMidNameInput;
     private EditText mLastNameInput;
-    private DatePicker mCalendar;
     private CheckBox mHiddenTelNum;
     private EditText mTelNumInput;
     private AutoCompleteTextView mUniInput;
@@ -82,7 +66,6 @@ public class FirstLoginActivity extends AppCompatActivity {
         mFirstNameInput = (EditText) findViewById(R.id.fNameInput);
         mMidNameInput = (EditText) findViewById(R.id.mNameInput);
         mLastNameInput = (EditText) findViewById(R.id.lNameInput);
-        mCalendar = (DatePicker) findViewById(R.id.calendar);
         mTelNumInput = (EditText) findViewById(R.id.telInput);
         mHiddenTelNum = (CheckBox) findViewById(R.id.telHidden);
         mUniInput = (AutoCompleteTextView)findViewById(R.id.uniInput);
@@ -98,12 +81,6 @@ public class FirstLoginActivity extends AppCompatActivity {
         String Sex;
         String uni = mUniInput.getText().toString();
         RadioButton sexM = (RadioButton)findViewById(R.id.sexM);
-
-        int day = mCalendar.getDayOfMonth();
-        int month = mCalendar.getMonth();
-        int year = mCalendar.getYear();
-        //String birthday = year + month + day;
-        //Log.d("DatePicker", birthday);
 
         String phoneNum = mTelNumInput.getText().toString();
         Boolean isHidden = mHiddenTelNum.isChecked();
@@ -171,13 +148,6 @@ public class FirstLoginActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-
-    public boolean checkLocationPermission()
-    {
-        String permission = "android.permission.ACCESS_FINE_LOCATION";
-        int res = this.checkCallingOrSelfPermission(permission);
-        return (res == PackageManager.PERMISSION_GRANTED);
     }
 
     private TextWatcher getUniIputTextWatcher(){

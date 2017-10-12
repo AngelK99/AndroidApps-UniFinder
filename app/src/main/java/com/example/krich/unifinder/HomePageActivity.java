@@ -155,12 +155,11 @@ public class HomePageActivity extends AppCompatActivity {
                     viewProfile.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Bundle b = new Bundle();
-                            String[] params = { uid ,us.getFirstName(), us.getLastName()};
-                            Intent chatPage = new Intent(HomePageActivity.this, ProfilePageActivity.class);
+                            Bundle id = new Bundle();
+                            id.putString("uid", uid);
 
-                            b.putStringArray("userInfo", params);
-                            chatPage.putExtras(b);
+                            Intent chatPage = new Intent(HomePageActivity.this, ProfilePageActivity.class);
+                            chatPage.putExtras(id);
 
                             HomePageActivity.this.startActivity(chatPage);
                             Log.d("UserInfo: ", us.getFirstName() + " " + us.getLastName());
