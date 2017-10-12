@@ -33,9 +33,11 @@
                 android:layout_height="wrap_content"
                 android:hint="Enter your Last Name*"/>
 
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Choose profile pic"
+                android:onClick="profilePic"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
