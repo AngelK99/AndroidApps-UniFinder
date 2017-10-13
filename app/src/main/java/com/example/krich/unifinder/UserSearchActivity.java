@@ -1,7 +1,9 @@
 package com.example.krich.unifinder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,16 +17,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.krich.unifinder.models.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -42,6 +45,7 @@ public class UserSearchActivity extends AppCompatActivity {
     private RadioButton mFNameSrcRB;
     private RadioButton mLNameSrcRB;
     private RadioButton mUniSrcRb;
+    private String mCurrUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class UserSearchActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
+        mCurrUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         mSearchBar = (AutoCompleteTextView)findViewById(R.id.searchBar);
         mSearchBtn = (Button)findViewById(R.id.searchBtn);
@@ -64,9 +69,27 @@ public class UserSearchActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     mSearchBar.addTextChangedListener(getUniIputTextWatcher());
+                    mUserList.removeAllViews();
+                    mSearchBar.setText("");
                 }else{
                     mSearchBar.removeTextChangedListener(getUniIputTextWatcher());
                 }
+            }
+        });
+
+        mFNameSrcRB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mUserList.removeAllViews();
+                mSearchBar.setText("");
+            }
+        });
+
+        mLNameSrcRB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mUserList.removeAllViews();
+                mSearchBar.setText("");
             }
         });
 
@@ -104,10 +127,9 @@ public class UserSearchActivity extends AppCompatActivity {
     private void findByNameQuery(final String child) {
         final String query = mSearchBar.getText().toString();
 
-        Toast.makeText(UserSearchActivity.this, query, Toast.LENGTH_SHORT).show();
-
         mDatabase.child("users").orderByChild(child)
                 .startAt(query)
+                .endAt(query + "~")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -128,8 +150,16 @@ public class UserSearchActivity extends AppCompatActivity {
 
     private void addUserToList(final User us, DataSnapshot child){
         final String uid = (String)child.getKey();
-        final StorageReference storageRef = mStorage.child("profilePics")
+
+        if(uid.equals(mCurrUid)){
+            return;
+        }
+        StorageReference storageRef = mStorage.child("profilePics")
                 .child(child.getKey());
+
+        if(storageRef.getPath().isEmpty()){
+            storageRef = mStorage.child("profilePics").child("default-profile-picture.png");
+        }
 
 
         TextView user = new TextView(UserSearchActivity.this);
@@ -137,12 +167,37 @@ public class UserSearchActivity extends AppCompatActivity {
         LinearLayout userField = new LinearLayout(UserSearchActivity.this);
         final ImageView userProfilePic = new ImageView(UserSearchActivity.this);
 
+        final StorageReference profilePicsRef = mStorage.child("profilePics");
+        final StorageReference[] userProfilePicRef = {mStorage};
+        profilePicsRef.child(uid).getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        userProfilePicRef[0] = profilePicsRef.child(uid);
+
+                        Glide.with(UserSearchActivity.this)
+                                .using(new FirebaseImageLoader())
+                                .load(userProfilePicRef[0])
+                                .into(userProfilePic);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                userProfilePicRef[0] = profilePicsRef.child("default-profile-picture.png");
+
+                Glide.with(UserSearchActivity.this)
+                        .using(new FirebaseImageLoader())
+                        .load(userProfilePicRef[0])
+                        .into(userProfilePic);
+            }
+        });
+
         user.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT));
 
         chat.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
 
         userField.setLayoutParams(new LinearLayout.LayoutParams(
@@ -210,10 +265,12 @@ public class UserSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d("QueryInfo: ", "works " + s);
                 DatabaseReference uniRef = mDatabase.child("universities");
 
-                uniRef.orderByValue().startAt(s.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                uniRef.orderByValue()
+                        .startAt(s.toString())
+                        .endAt(s.toString() + "~")
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         List<String> values = new ArrayList<String>();

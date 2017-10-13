@@ -23,7 +23,7 @@
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:onClick="loginMethod"
-                android:text="Sign in"
+                android:text="Login"
                 android:textSize="20pt"
                 android:textStyle="italic"/>
 

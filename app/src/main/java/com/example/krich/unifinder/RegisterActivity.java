@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         final ProgressDialog singUpInProgress = new ProgressDialog(this);
         singUpInProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        singUpInProgress.setTitle("Logging in..");
+        singUpInProgress.setTitle("Signing up..");
         singUpInProgress.show();
 
         hashedPass = ph.Hash(password);

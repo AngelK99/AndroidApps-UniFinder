@@ -159,8 +159,10 @@ public class FirstLoginActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d("QueryInfo: ", "works " + s);
-                mUniRef.orderByValue().startAt(s.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                mUniRef.orderByValue()
+                        .startAt(s.toString())
+                        .endAt(s.toString() + "~")
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         List<String> values = new ArrayList<String>();

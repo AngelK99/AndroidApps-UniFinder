@@ -1,5 +1,7 @@
 package com.example.krich.unifinder;
 
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -10,6 +12,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.krich.unifinder.models.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -72,12 +76,30 @@ public class ProfilePageActivity extends AppCompatActivity {
         TextView sex = new TextView(this);
         TextView uni = new TextView(this);
 
-        StorageReference picRef = mStorageRef.child("profilePics").child(mUserId);
-        Glide.with(ProfilePageActivity.this)
-                .using(new FirebaseImageLoader())
-                .load(picRef)
-                .into(mProfilePicView);
+        final StorageReference profilePicsRef = mStorageRef.child("profilePics");
+        final StorageReference[] userProfilePicRef = {mStorageRef};
+        profilePicsRef.child(mUserId).getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        userProfilePicRef[0] = profilePicsRef.child(mUserId);
 
+                        Glide.with(ProfilePageActivity.this)
+                                .using(new FirebaseImageLoader())
+                                .load(userProfilePicRef[0])
+                                .into(mProfilePicView);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                userProfilePicRef[0] = profilePicsRef.child("default-profile-picture.png");
+
+                Glide.with(ProfilePageActivity.this)
+                        .using(new FirebaseImageLoader())
+                        .load(userProfilePicRef[0])
+                        .into(mProfilePicView);
+            }
+        });
         fName.setText("First Name: " + u.getFirstName());
         mProfilePanel.addView(fName);
 

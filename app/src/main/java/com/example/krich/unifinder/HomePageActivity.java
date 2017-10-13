@@ -59,7 +59,10 @@ public class HomePageActivity extends AppCompatActivity {
                 //openUserProfile();
                 return true;
             case R.id.action_logOut:
-                //openUserProfile();
+                FirebaseAuth.getInstance().signOut();
+                Intent main = new Intent(HomePageActivity.this, MainActivity.class);
+                startActivity(main);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -100,11 +103,33 @@ public class HomePageActivity extends AppCompatActivity {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
                     final User us = childDataSnapshot.getValue(User.class);
                     final String uid = (String)childDataSnapshot.getKey();
-                    final StorageReference storageref = mStorage.getReference()
-                            .child("profilePics")
-                            .child(childDataSnapshot.getKey());
+                    final ImageView userProfilePic = new ImageView(HomePageActivity.this);
 
+                    final StorageReference profilePicsRef = mStorage.getReference()
+                            .child("profilePics");
+                    final StorageReference[] userProfilePicRef = {mStorage.getReference()};
+                    profilePicsRef.child(uid).getDownloadUrl()
+                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    userProfilePicRef[0] = profilePicsRef.child(uid);
 
+                                    Glide.with(HomePageActivity.this)
+                                            .using(new FirebaseImageLoader())
+                                            .load(userProfilePicRef[0])
+                                            .into(userProfilePic);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    userProfilePicRef[0] = profilePicsRef.child("default-profile-picture.png");
+
+                                    Glide.with(HomePageActivity.this)
+                                            .using(new FirebaseImageLoader())
+                                            .load(userProfilePicRef[0])
+                                            .into(userProfilePic);
+                                }
+                            });
 
                     if(uid.equals(currUid)){
                         continue;
@@ -113,14 +138,13 @@ public class HomePageActivity extends AppCompatActivity {
                     TextView user = new TextView(HomePageActivity.this);
                     final Button chat = new Button(HomePageActivity.this);
                     LinearLayout userField = new LinearLayout(HomePageActivity.this);
-                    final ImageView userProfilePic = new ImageView(HomePageActivity.this);
 
                     user.setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
 
                     chat.setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
 
                     userField.setLayoutParams(new LinearLayout.LayoutParams(
@@ -133,10 +157,7 @@ public class HomePageActivity extends AppCompatActivity {
                             LinearLayout.LayoutParams.MATCH_PARENT
                     ));
 
-                    Glide.with(HomePageActivity.this)
-                            .using(new FirebaseImageLoader())
-                            .load(storageref)
-                            .into(userProfilePic);
+
 
                     chat.setText("Chat");
                     chat.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +169,21 @@ public class HomePageActivity extends AppCompatActivity {
 
                             b.putStringArray("userInfo", params);
                             chatPage.putExtras(b);
+
+                            HomePageActivity.this.startActivity(chatPage);
+                            Log.d("UserInfo: ", us.getFirstName() + " " + us.getLastName());
+                            Log.d("UserInfo: ", uid);
+                        }
+                    });
+
+                    userField.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Bundle id = new Bundle();
+                            id.putString("uid", uid);
+
+                            Intent chatPage = new Intent(HomePageActivity.this, ProfilePageActivity.class);
+                            chatPage.putExtras(id);
 
                             HomePageActivity.this.startActivity(chatPage);
                             Log.d("UserInfo: ", us.getFirstName() + " " + us.getLastName());
