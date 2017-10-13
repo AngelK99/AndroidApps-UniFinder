@@ -86,21 +86,13 @@ public class ProfilePageActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         userProfilePicRef[0] = profilePicsRef.child(mUserId);
-
-                        Glide.with(ProfilePageActivity.this)
-                                .using(new FirebaseImageLoader())
-                                .load(userProfilePicRef[0])
-                                .into(mProfilePicView);
+                        setPicture(userProfilePicRef[0], mProfilePicView);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 userProfilePicRef[0] = profilePicsRef.child("default-profile-picture.png");
-
-                Glide.with(ProfilePageActivity.this)
-                        .using(new FirebaseImageLoader())
-                        .load(userProfilePicRef[0])
-                        .into(mProfilePicView);
+                setPicture(userProfilePicRef[0], mProfilePicView);
             }
         });
         fName.setText("First Name: " + u.getFirstName());
@@ -130,5 +122,12 @@ public class ProfilePageActivity extends AppCompatActivity {
 
         uni.setText("University: " + u.getUniversity());
         mProfilePanel.addView(uni);
+    }
+
+    private void setPicture(StorageReference ref, ImageView view){
+        Glide.with(ProfilePageActivity.this)
+                .using(new FirebaseImageLoader())
+                .load(ref)
+                .into(view);
     }
 }

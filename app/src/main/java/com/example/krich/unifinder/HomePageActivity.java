@@ -112,21 +112,13 @@ public class HomePageActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     userProfilePicRef[0] = profilePicsRef.child(uid);
-
-                                    Glide.with(HomePageActivity.this)
-                                            .using(new FirebaseImageLoader())
-                                            .load(userProfilePicRef[0])
-                                            .into(userProfilePic);
+                                    setPicture(userProfilePicRef[0], userProfilePic);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
                                     userProfilePicRef[0] = profilePicsRef.child("default-profile-picture.png");
-
-                                    Glide.with(HomePageActivity.this)
-                                            .using(new FirebaseImageLoader())
-                                            .load(userProfilePicRef[0])
-                                            .into(userProfilePic);
+                                    setPicture(userProfilePicRef[0], userProfilePic);
                                 }
                             });
 
@@ -231,5 +223,12 @@ public class HomePageActivity extends AppCompatActivity {
         profilePage.putExtras(id);
 
         this.startActivity(profilePage);
+    }
+
+    private void setPicture(StorageReference ref, ImageView view){
+        Glide.with(HomePageActivity.this)
+                .using(new FirebaseImageLoader())
+                .load(ref)
+                .into(view);
     }
 }
