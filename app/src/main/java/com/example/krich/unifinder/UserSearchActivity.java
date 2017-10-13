@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.krich.unifinder.models.User;
@@ -288,7 +289,10 @@ public class UserSearchActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(UserSearchActivity.this,
+                                "Can't get users, please try again later.",
+                                Toast.LENGTH_LONG)
+                                .show();
                     }
                 });
             }

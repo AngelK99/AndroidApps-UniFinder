@@ -65,7 +65,10 @@ public class ProfilePageActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ProfilePageActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfilePageActivity.this,
+                        "Can't get user info, please try again later.",
+                        Toast.LENGTH_LONG)
+                        .show();
             }
         });
     }

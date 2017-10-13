@@ -139,12 +139,18 @@ public class FirstLoginActivity extends AppCompatActivity {
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                    Toast.makeText(FirstLoginActivity.this, "Upload Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FirstLoginActivity.this,
+                            "Upload Failed!",
+                            Toast.LENGTH_SHORT)
+                            .show();
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(FirstLoginActivity.this, "Upload Success!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FirstLoginActivity.this,
+                            "Upload Success!",
+                            Toast.LENGTH_SHORT)
+                            .show();
                 }
             });
         }

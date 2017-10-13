@@ -83,8 +83,10 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(loginPage);
                             finish();
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Reg failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this,
+                                    "Signing up failed, please try again later..",
+                                    Toast.LENGTH_LONG)
+                                    .show();
                             singUpInProgress.cancel();
                         }
                     }

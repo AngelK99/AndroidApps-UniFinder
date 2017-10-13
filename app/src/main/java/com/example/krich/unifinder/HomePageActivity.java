@@ -94,7 +94,6 @@ public class HomePageActivity extends AppCompatActivity {
 
     private void getUsers(){
         DatabaseReference ref = mDatabase.getReference("users");
-        Log.d("USer Test: ", "works");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -218,7 +217,7 @@ public class HomePageActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(HomePageActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePageActivity.this, "Can't fetch users, please try again later.", Toast.LENGTH_LONG).show();
             }
         });
     }

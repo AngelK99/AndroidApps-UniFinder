@@ -119,15 +119,18 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onCancelled(DatabaseError error) {
                                     loggingInProgress.cancel();
-                                    Toast.makeText(LoginActivity.this, "Database error, please try again later.",
+                                    Toast.makeText(LoginActivity.this,
+                                            "Database error, please try again later.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             });
 
                         } else {
                             loggingInProgress.cancel();
-                            Toast.makeText(LoginActivity.this, "Authentication failed. Wrong username and/or password.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,
+                                    "Authentication failed. Wrong username and/or password.",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
                         }
                     }
                 });
