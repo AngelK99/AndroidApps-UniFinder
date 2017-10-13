@@ -40,6 +40,7 @@ public class HomePageActivity extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private LinearLayout mUserList;
     private FirebaseStorage mStorage;
+    private Button mFindPeople;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,6 +76,15 @@ public class HomePageActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mStorage = FirebaseStorage.getInstance();
         mUserList = (LinearLayout)findViewById(R.id.userList);
+        mFindPeople = (Button)findViewById(R.id.findPeople);
+
+        mFindPeople.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent  openPage = new Intent(HomePageActivity.this, UserSearchActivity.class);
+                startActivity(openPage);
+            }
+        });
 
         getUsers();
     }
