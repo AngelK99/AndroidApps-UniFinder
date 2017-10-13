@@ -72,6 +72,16 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        if(email.length() > 30) {
+            Toast.makeText(this, "Please enter valid email!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(password.length() > 36){
+            Toast.makeText(this, "Password must be between 1 and 36 symbols!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        
         final ProgressDialog loggingInProgress = new ProgressDialog(this);
         loggingInProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         loggingInProgress.setTitle("Logging in..");

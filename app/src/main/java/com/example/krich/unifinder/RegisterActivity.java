@@ -47,6 +47,11 @@ public class RegisterActivity extends AppCompatActivity {
         PassHasher ph = new PassHasher();
         String hashedPass;
 
+        if(password.length() > 36){
+            Toast.makeText(this, "Password must be between 1 and 36 symbols!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if(!password.equals(passCon)){
             Toast.makeText(this, "Passwords should match!", Toast.LENGTH_SHORT).show();
             return;

@@ -103,6 +103,31 @@ public class FirstLoginActivity extends AppCompatActivity {
             return;
         }
 
+        if(fName.length() > 20){
+            Toast.makeText(this, "First Name must be between 1 and 20 symbols!", Toast.LENGTH_LONG).show();
+            mFirstNameInput.requestFocus();
+            return;
+        }
+
+        if(mName.length() > 20){
+            Toast.makeText(this, "Middle Name must be between 1 and 20 symbols!", Toast.LENGTH_LONG).show();
+            mMidNameInput.requestFocus();
+            return;
+        }
+        if(lName.length() > 20){
+            Toast.makeText(this, "Last Name must be between 1 and 20 symbols!", Toast.LENGTH_LONG).show();
+            mLastNameInput.requestFocus();
+            return;
+        }
+        if(uni.length() > 50){
+            Toast.makeText(this, "Please enter a valid university!", Toast.LENGTH_LONG).show();
+            mUniInput.requestFocus();
+            return;
+        }
+
+
+
+
         if(sexM.isChecked()){
             Sex = "m";
         } else{

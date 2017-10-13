@@ -78,6 +78,7 @@ public class HomePageActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         mStorage = FirebaseStorage.getInstance();
+
         mUserList = (LinearLayout)findViewById(R.id.userList);
         mFindPeople = (Button)findViewById(R.id.findPeople);
 
